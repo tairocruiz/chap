@@ -109,7 +109,28 @@ if ($no > 0) {
             { data: 'uname' },
             { data: 'email' },
             { data: 'rolename' },
-            // Add more columns as needed
+            { data: null,
+                render: function(data, type, row) {
+                    // Modify the HTML code below as per your requirements
+                    return `
+                            <div class="col-12 d-flex flex-row align-items-center">
+                                <div class="col-6 px-3">
+                                    <a href="#user_edit/${row.uid}" title="Edit" class="text-white edition" data-edit="edit_user" data-tagid="${row.uid}">
+                                        <i class="fas fa-edit fa-fw text-success"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 px-3">
+                                    <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure you want to delete this?')" id="delete-object-${row.uid}">
+                                        <input type="text" name="del_id" value="${row.uid}" id="hiddenInput" hidden>
+                                        <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="${row.uid}" id="delete-btn-${row.uid}" name="delete_user">
+                                            <i class="fas fa-trash-alt fa-fw text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        `;
+                } 
+            }
         ],
         paging: true,
         pageLength: rowsPerPage
