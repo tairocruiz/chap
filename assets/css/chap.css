@@ -1,0 +1,93 @@
+:root {
+    --chap-blue-1: #1a255b;
+    --chap-blue-2: #3a3ab3;
+    --chap-orange-1: #d86c18;
+    --chap-orange-2: #ffa500;
+    --chap-dark: #192f51;
+    --chap-sec-dark: #344264;
+    --chap-white: #ebebeb;
+    --chap-deep-gray: #27292b;
+
+    --chap-b-1-text: #f0f8ff;
+}
+html, body {
+    scrollbar-width: thin !important;
+   
+}
+body {
+    background: linear-gradient(180deg, var(--chap-dark), var(--chap-sec-dark), var(--chap-dark));
+    height: 100vh;
+}
+
+form.show {
+    display: block !important;
+    visibility: visible !important;
+}
+.text-alice, .text-alice .card-header, .text-alice table {
+    color: aliceblue !important;
+}
+.bg-dark {
+    background-color: var(--chap-dark) !important;
+}
+.bg-orange {
+    background-color: var(--chap-orange-1) !important;
+}
+
+.hide {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.border-left {
+    border-left: 2px solid var(--chap-orange-1);
+}
+.border-right {
+    border-right: 2px solid var(--chap-orange-1);
+}
+
+.bg-chap-b-1 {
+    background-color: var(--chap-blue-1);
+}
+.bg-chap-b-1, .bg-chap-b-1.sidebar .nav-link {
+    color: var(--chap-b-1-text);
+    font-weight: 600;
+}
+.bg-chap-b-1.sidebar .nav-link:hover {
+    transform: translateX(7px);
+    color: var(--chap-orange-1);
+    font-weight: 600;
+}
+.nav-link:hover, .nav-link {
+    transition: all .8s cubic-bezier(.65,.05,.36,1);
+}
+
+.border-bt-blue-2 {
+    border-top: 4px solid var(--chap-blue-2) ;
+}
+.border-bs-blue-2 {
+    border-left: 4px solid var(--chap-blue-2) ;
+}
+.border-bt-blue-2 {
+    border-bottom: 4px solid var(--chap-blue-2) ;
+}
+.border-be-blue-2 {
+    border-right: 4px solid var(--chap-blue-2) ;
+}
+.border-bt-orange-2 {
+    border-top: 4px solid var(--chap-orange-1) ;
+}
+.border-bs-orange-2 {
+    border-left: 4px solid var(--chap-orange-1) ;
+}
+.border-bt-orange-2 {
+    border-bottom: 4px solid var(--chap-orange-1) ;
+}
+.border-be-orange-2 {
+    border-right: 4px solid var(--chap-orange-1) ;
+}
+
+.chap-text-o {
+    color: var(--chap-orange-1);
+}
+
+

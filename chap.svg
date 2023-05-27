@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <path transform="matrix(1,0,0,1,-4.4,3.5)" d="M 211.2 214.9 C 211.2 214.9 150.8 254 150.8 254 S 266.5 289.3 266.5 289.3 S 182.2 254 182.2 254 S 301.7 198.5 301.7 198.5 S 93 196 93 196" fill="rgb(216, 108, 24)">
+        </path>
+    <linearGradient id="umd20ut9">
+        </linearGradient>
+    <text font-weight="600" transform="rotate(0,143.5,174.9)" font-size="59.1" x="78.3" y="191.1" textLength="128.4" fill="#162880">
+        Chap
+        </text>
+    <text font-weight="600" font-size="46.1" x="220.3" y="191.1" textLength="57.4" fill="rgb(216, 108, 24)">
+        Co.
+        </text>
+    <path d="M 238 53 C 238 53 359 274 359 274 S 262 -6 262 -5 S 89 83 89 83" fill="#162880">
+        </path>
+    <path d="M 139 335 C 139 335 321 309 321 309 S 114 391 114 391 S 38 115 38 115" fill="rgb(216, 108, 24)"/>
+</svg>
