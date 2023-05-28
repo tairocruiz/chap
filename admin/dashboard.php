@@ -268,7 +268,7 @@ if ($message != '') {
         url: fl + ".php",
         data: "data=" + ident,
         success: function(response) {
-          // console.log(this)
+          console.log(this)
           $('#wrapper').html(response);
         }
       });
