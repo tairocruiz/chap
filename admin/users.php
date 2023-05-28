@@ -50,8 +50,6 @@ if (can('read_users', $_SESSION['permissions'])) {
                             <?php if (can('update_users', $_SESSION['permissions']) || can('delete_users', $_SESSION['permissions'])) { ?>
                                 <td>
                                     <div class="col-12 d-flex flex-row align-items-center">
-                                        <!-- <?php //var_dump($_SESSION); 
-                                                ?> -->
                                         <?php if (can('update_users', $_SESSION['permissions'])) { ?>
                                             <div class="col-6 px-3">
                                                 <a href="#user_edit/<?php echo $res['uid']; ?>" title="Edit" class="text-white edition" data-edit="edit_user" data-tagid="<?php echo $res['uid']; ?>">

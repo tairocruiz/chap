@@ -2,52 +2,71 @@
 include_once '../libs/config.php';
 include_once '../libs/library.php';
 
-$sql = "SELECT * FROM `roles`";
+$sql = "SELECT `products`.*, `product_service`.`label` FROM `products`, `product_service` WHERE `products`.`prod_serv_id`=`product_service`.`id`;";
 $query = mysqli_query($conn, $sql);
 $no = mysqli_num_rows($query);
 
+if ($no > 0) {
 
 ?>
+    <div class="card-header bg-white d-flex justify-content-around align-items-center">
+        <div class="col-8">
+            <h3 class="" style="font-weight: 600;">Products</h3>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <a class="btn btn-success modality" href="#" data-targeted="store">Add Product</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Label</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col" style="width: 10%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $loop = 1;
 
-<div class="card-header d-flex justify-content-around align-items-center">
-    <div class="col-8">
-        <h3>Users</h3>
+                while ($res = mysqli_fetch_assoc($query)) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $loop;
+                                        $loop++; ?></th>
+                        <td><?php echo ucfirst($res['label']); ?></td>
+                        <td><?php echo $res['name']; ?></td>
+                        <td><?php echo number_format($res['price'], 2).'/='; ?></td>
+                        <td><?php echo number_format($res['quantity']); ?></td>
+                        <td>
+                            <div class="col-12 d-flex flex-row align-items-center">
+                                <div class="col-6 px-3">
+                                    <a href="#product_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_product" data-tagid="<?php echo $res['id']; ?>">
+                                        <i class="fas fa-edit fa-fw text-success"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 px-3">
+                                    <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
+                                        <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
+                                        <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_product">
+                                            <i class="fas fa-trash-alt fa-fw text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+
+            </tbody>
+        </table>
     </div>
-    <div class="col-4 d-flex justify-content-end">
-        <a class="btn btn-success modality" href="#" data-targeted="add_user">Add user</a>
-    </div>
-</div>
-<div class="card-body row">
-    <form action="" method="post" class="col-lg-6 m-auto col-md-8 col-sm-12">
-        <div class="form-group">
-            <label class="form-label" for="nameInput">Name:</label>
-            <input type="text" class="form-control" name="name" id="nameInput" />
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="emailInput">Email:</label>
-            <input type="email" class="form-control" name="mail" id="emailInput" />
-        </div>
-        <div class="form-group py-lg-1">
-            <label class="form-check-label" for="genderInput">Gender:</label>
-            <input type="radio" class="mx-lg-1" name="gender" value="male" id="genderInput1" required />Male
-            <input type="radio" class="mx-lg-1" name="gender" value="female" id="genderInput2" />Female
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="passwordInput">Password:</label>
-            <input type="password" class="form-control" name="password" id="passwordInput" />
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="roleInput">Role:</label>
-            <select name="role" id="roleInput" class="form-control">
-                <option value="" class=" disabled text-muted">-- select --</option>
-                <?php while ($row = mysqli_fetch_assoc($query)) {
-                    echo '<option value="' . $row['id'] . '"> ' . ucfirst($row['name']) . ' </option>';
-                } ?>
-            </select>
-        </div>
-        <div class="form-group my-2">
-            <button class="btn btn-success" name="add_user" type="submit">Save</button>
-            <button type="reset" class="btn btn-warning">Reset</button>
-        </div>
-    </form>
-</div>
+
+<?php
+}
+
+
+?>
