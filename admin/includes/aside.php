@@ -7,8 +7,8 @@
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link menu active" aria-current="page" href="index.php">
-                    <span data-bs-feather="home"></span>
+                <a class="nav-link active" aria-current="page" href="index.php">
+                    
                     Dashboard
                 </a>
             </li>
@@ -19,6 +19,15 @@
                         <?php echo ucfirst(str_replace('_', ' ', $key->name)); ?>
                     </a>
                 </li>
+            <?php } ?>
+            <?php if(can('read_logs', $_SESSION['permissions'])){ ?>
+            <li class="nav-item">
+                <a class="nav-link menu" aria-current="page" href="#">
+                <span data-bs-feather="logs"></span>
+                    <i class="fas fa-notes-medical fa-fw"></i>
+                    Logs
+                </a>
+            </li>
             <?php } ?>
 
         </ul>

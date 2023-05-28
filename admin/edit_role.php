@@ -16,7 +16,6 @@ if (isset($_GET['data'])) {
     while ($maker = mysqli_fetch_assoc($squndler)) {
         $ticked[$maker['permission']] = $maker['permission'];
     }
-
     $query = mysqli_query($conn, $sql);
     $no = mysqli_num_rows($query);
     if ($no >= 1) {
@@ -25,10 +24,13 @@ if (isset($_GET['data'])) {
 
         <div class="card-header d-flex justify-content-around align-items-center">
             <div class="col-8">
-                <h3>Users</h3>
+                <h3>Roles</h3>
             </div>
             <div class="col-4 d-flex justify-content-end">
-                <a class="btn btn-success modality" href="#" data-targeted="add_user">Add user</a>
+                <a class="btn btn-success modality" href="#" data-targeted="roles">
+                    <i class="fas fa-file-archive fa-fw"></i>
+                    List
+                </a>
             </div>
         </div>
         <div class="card-body row">
@@ -51,15 +53,12 @@ if (isset($_GET['data'])) {
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <button type="submit" class="btn btn-success updater" name="update_user" value="<?php echo $res['id']; ?>">Update</button>
+                    <button type="submit" class="btn btn-success updater" name="update_role" value="<?php echo $res['id']; ?>">Update</button>
                     <button type="reset" class="btn btn-warning">Reset</button>
                 </div>
             </form>
         </div>
-
-
 <?php
-
     }
 }
 ?>

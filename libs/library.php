@@ -39,3 +39,26 @@ function message($message, $status = "success"){
     </script>
     ";
 }
+function can($sessionkey, $array){
+    if (key_exists($sessionkey, $array)) {
+        return $sessionkey;
+    }else{
+        $message = "404! YOU ARE NOT AUTHORIZED.";
+        return false;
+    }
+}
+
+function getPermiId($permi, $dbcon){
+    $sql = "SELECT `id` FROM `permissions` WHERE `permission`='$permi';";
+    $ques = mysqli_query($dbcon, $sql);
+    $res = mysqli_fetch_assoc($ques);
+    return $res['id'];
+}
+
+function getSessId($sess, $dbcon){
+    $sql = "SELECT `id` FROM `logs` WHERE `session`='$sess';";
+    $ques = mysqli_query($dbcon, $sql);
+    $res = mysqli_fetch_assoc($ques);
+    return $res['id'];
+}
+

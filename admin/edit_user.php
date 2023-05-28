@@ -37,6 +37,7 @@ if (isset($_GET['data'])) {
         <div class="form-group">
             <label class="form-label" for="passwordInput">Pin:</label>
             <input type="text" class="form-control" name="password" id="passwordInput" />
+            <input type="hidden" name="oldpas" id="OldPasswordInput" value="<?php echo $res['password']; ?>"/>
         </div>
         <div class="form-group">
             <label class="form-label" for="roleInput">Role: <?php echo ucfirst($res['rolename']); ?></label>

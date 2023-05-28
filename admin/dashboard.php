@@ -156,18 +156,7 @@ if ($message != '') {
         console.log('I was closed by the timer')
       }
     })
-    // Swal.fire({
-    //   title: 'Status message.',
-    //   icon: 'success',
-    //   html: 'age; ?>',
-    //   showCloseButton: true,
-    //   showCancelButton: true,
-    //   focusConfirm: false,
-    //   confirmButtonText: 'Ok',
-    //   confirmButtonAriaLabel: 'accept',
-    //   cancelButtonText: 'Cancel',
-    //   cancelButtonAriaLabel: 'decline'
-    // });
+   
   </script>
 <?php
 }
@@ -193,6 +182,7 @@ if ($message != '') {
           </div>
         </div>
         <div class="card-body d-flex flex-row row">
+          <!-- <?php //var_dump($_SESSION); ?> -->
           <?php
           foreach ($column as $field) {
           ?>
@@ -233,7 +223,7 @@ if ($message != '') {
         url: sq + ".php",
         data: 'all_users',
         success: function(response) {
-          console.log(this);
+          // console.log(this);
           $('#wrapper').html(response);
         }
       });
@@ -278,7 +268,7 @@ if ($message != '') {
         url: fl + ".php",
         data: "data=" + ident,
         success: function(response) {
-          console.log(this)
+          // console.log(this)
           $('#wrapper').html(response);
         }
       });
@@ -287,7 +277,7 @@ if ($message != '') {
     // rolepermission input 
     $(document).on('click', 'input[id^="permissInput-"]', function() {
       if (!$(this).attr('chacked')) {
-        
+
       }
     });
 
@@ -304,33 +294,27 @@ if ($message != '') {
         confirmButtonText: 'Yes',
       }).then((result) => {
         if (result.isConfirmed) {
+          // $(`#delete-object-${y}`).trigger('submit');
+          $.ajax({
+            type: 'POST',
+            url: 'dashboard.php',
+            data: {
+                    del_id: y
+                },
+                success: function(response) {
+                    console.log(this);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
 
-          $(`#delete-object-${y}`).attr('onsubmit', 'return true');
-          $(`#delete-object-${y}`).submit();
+          });
+        
         } else {
           return false;
         }
       })
     });
-
-
-
-    // $(document).on('click', 'button.updater', function() {
-    //   Swal.fire({
-    //     title: 'Confirm',
-    //     text: 'Are you sure you want to delete this',
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonText: 'Yes!'
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       console.log(this);
-
-    //     }
-    //   })
-    // });
 
   });
 </script>
