@@ -84,5 +84,8 @@ if (can('read_users', $_SESSION['permissions'])) {
 <?php
         mysqli_query($conn, $actlog);
     }
+}else {
+    include 'includes/forbidden.php';
 }
+
 ?>

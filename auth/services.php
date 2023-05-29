@@ -1,6 +1,14 @@
 <?php
+
+session_start();
+
 include_once '../libs/config.php';
 include_once '../libs/library.php';
+
+if (can('read_services', $_SESSION['permissions'])) {
+    $permi = getPermiId('read_services', $conn);
+    $sessid = getSessId($_SESSION['id'], $conn);
+    $actlog = "INSERT INTO `activity_log` (`log_id`, `permission_id`) VALUES('" . $sessid . "', '" . $permi . "');";
 
 $sql = "SELECT `services`.*, `product_service`.*, `services`.`id` AS servi FROM `services`, `product_service` WHERE `product_service`.`id`=`services`.`prod_serv_id`;";
 $query = mysqli_query($conn, $sql);
@@ -82,5 +90,10 @@ if ($no > 0) {
         </span>
     </div>
     
-
-<?php } ?>
+    <?php
+        mysqli_query($conn, $actlog);
+    }
+} else {
+    include 'includes/forbidden.php';
+}
+?>

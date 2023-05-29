@@ -173,12 +173,10 @@ if ($message != '') {
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="card col-12 mt-lg-4 mt-sm-2 border-0 bg-dark text-alice" id="wrapper">
         <div class="card-header bg-dark d-flex justify-content-around align-items-center">
-          <div class="col-8">
+          <div class="col-12">
             <h3 class="" style="font-weight: 600;">Dashboard</h3>
           </div>
-          <div class="col-4 d-flex justify-content-end">
-            <button class="btn btn-success">Add some</button>
-          </div>
+          
         </div>
         <div class="card-body d-flex flex-row row">
           <!-- <?php //var_dump($_SESSION); 
