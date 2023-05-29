@@ -34,7 +34,9 @@ if (can('read_products', $_SESSION['permissions'])) {
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col" style="width: 10%;">Actions</th>
+                        <?php if (can('update_products', $_SESSION['permissions']) || can('delete_products', $_SESSION['permissions'])) { ?>
+                            <th scope="col" style="width: 10%;">Actions</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,23 +51,29 @@ if (can('read_products', $_SESSION['permissions'])) {
                             <td><?php echo $res['name']; ?></td>
                             <td><?php echo number_format($res['price'], 2) . '/='; ?></td>
                             <td><?php echo number_format($res['quantity']); ?></td>
-                            <td>
-                                <div class="col-12 d-flex flex-row align-items-center">
-                                    <div class="col-6 px-3">
-                                        <a href="#product_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_product" data-tagid="<?php echo $res['id']; ?>">
-                                            <i class="fas fa-edit fa-fw text-success"></i>
-                                        </a>
+                            <?php if (can('update_products', $_SESSION['permissions']) || can('delete_products', $_SESSION['permissions'])) { ?>
+                                <td>
+                                    <div class="col-12 d-flex flex-row align-items-center">
+                                        <?php if (can('update_products', $_SESSION['permissions'])) { ?>
+                                            <div class="col-6 px-3">
+                                                <a href="#product_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_product" data-tagid="<?php echo $res['id']; ?>">
+                                                    <i class="fas fa-edit fa-fw text-success"></i>
+                                                </a>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if (can('delete_products', $_SESSION['permissions'])) { ?>
+                                            <div class="col-6 px-3">
+                                                <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
+                                                    <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
+                                                    <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_product">
+                                                        <i class="fas fa-trash-alt fa-fw text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        <?php } ?>
                                     </div>
-                                    <div class="col-6 px-3">
-                                        <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
-                                            <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
-                                            <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_product">
-                                                <i class="fas fa-trash-alt fa-fw text-danger"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
+                                </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
 

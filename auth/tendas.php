@@ -35,7 +35,9 @@ if (can('read_tendas', $_SESSION['permissions'])) {
                         <th scope="col">Cost</th>
                         <th scope="col">Quantity/Quality</th>
                         <th scope="col">Due</th>
-                        <th scope="col" style="width: 10%;">Actions</th>
+                        <?php if (can('update_tendas', $_SESSION['permissions']) || can('delete_tendas', $_SESSION['permissions'])) { ?>
+                            <th scope="col" style="width: 10%;">Actions</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,13 +55,17 @@ if (can('read_tendas', $_SESSION['permissions'])) {
                             <td><?php echo (($res['req_quantity'] !== NULL) ? $res['req_quantity'] : $res['serve_quality']); ?></td>
 
                             <td><?php echo ucfirst($res['due_date']); ?></td>
+                            <?php if (can('update_tendas', $_SESSION['permissions']) || can('delete_tendas', $_SESSION['permissions'])) { ?>
                             <td>
                                 <div class="col-12 d-flex flex-row align-items-center">
+                                <?php if (can('update_tendas', $_SESSION['permissions'])) { ?>
                                     <div class="col-6 px-3">
                                         <a href="#tenda_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_tenda" data-tagid="<?php echo $res['id']; ?>">
                                             <i class="fas fa-edit fa-fw text-success"></i>
                                         </a>
                                     </div>
+                                    <?php } ?>
+                                    <?php if (can('delete_tendas', $_SESSION['permissions'])) { ?>
                                     <div class="col-6 px-3">
                                         <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
                                             <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
@@ -68,8 +74,10 @@ if (can('read_tendas', $_SESSION['permissions'])) {
                                             </button>
                                         </form>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
 

@@ -44,12 +44,16 @@ if (can('read_permissions', $_SESSION['permissions'])) {
                                             $loop++; ?></th>
                             <td><?php echo $res['permission']; ?></td>
                             <td>
+
                                 <div class="col-12 d-flex flex-row align-items-center">
-                                    <div class="col-6 px-3">
-                                        <a href="#permission_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_permissions" data-tagid="<?php echo $res['id']; ?>">
-                                            <i class="fas fa-edit fa-fw text-success"></i>
-                                        </a>
-                                    </div>
+                                    <?php if (can('update_permissions', $_SESSION['permissions'])) { ?>
+                                        <div class="col-6 px-3">
+                                            <a href="#permission_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_permissions" data-tagid="<?php echo $res['id']; ?>">
+                                                <i class="fas fa-edit fa-fw text-success"></i>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if (can('delete_permissions', $_SESSION['permissions'])) { ?>
                                     <div class="col-6 px-3">
                                         <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
                                             <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
@@ -58,6 +62,7 @@ if (can('read_permissions', $_SESSION['permissions'])) {
                                             </button>
                                         </form>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </td>
                         </tr>

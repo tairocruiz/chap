@@ -1,0 +1,12 @@
+<svg version="1.1" viewBox="0 0 1200 1200" preserveAspectRatio="xMinYMin meet">
+    <defs>
+        <pattern id="image" patternUnits="userSpaceOnUse" height="450" width="450">
+            <image x="25" y="25" height="450" width="450" xlink:href="/images/dummy_user.png"></image>
+        </pattern>
+    </defs>
+    <g>
+        <circle cx="603" cy="297" r="300" stroke-width="40px" stroke="#ef5350" fill="url(#image)" />
+        <line x1="400" y1="100" x2="800" y2="500" stroke-width="40px" stroke="#ef5350" />
+    </g>
+
+</svg>

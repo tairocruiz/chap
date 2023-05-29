@@ -27,7 +27,9 @@
                                 </a>
                             </li>
 
-                <?php } } } ?>
+                <?php }
+                    }
+                } ?>
             <?php } ?>
             <?php if (can('read_logs', $_SESSION['permissions'])) { ?>
                 <li class="nav-item">
@@ -51,27 +53,33 @@
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
                     <span data-bs-feather="file-text"></span>
-                    Current month
+                    <i class="fa fa-user-md me-2 text-info" aria-hidden="true"></i>
+                    Profile
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
                     <span data-bs-feather="file-text"></span>
-                    Last quarter
+                    <i class="fa fa-cogs me-2 text-info" aria-hidden="true"></i>
+                    Settings
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
                     <span data-bs-feather="file-text"></span>
-                    Social engagement
+                    <i class="fas fa-sign-out-alt fa-fw me-2 text-info"></i>
+                    Logout
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link menu" href="#">
-                    <span data-bs-feather="file-text"></span>
-                    Year-end sale
-                </a>
-            </li>
+
         </ul>
+        <div class="w-100 p-2 mt-5 ps-2">
+            <small class="text-warning mt-2">
+                <i>Developed By </i>
+                <a href="https://github.com/tairocruiz" class=" text-decoration-none text-alice">
+                    Tairo<sup>&copy;</sup>
+                </a>
+            </small>
+        </div>
     </div>
 </nav>

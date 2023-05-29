@@ -47,21 +47,23 @@ if (can('read_roles', $_SESSION['permissions'])) {
                             <td><?php echo $res['permissions']; ?></td>
                             <td><?php echo ucfirst($res['users']); ?></td>
                             <td>
-                                <div class="col-12 d-flex flex-row align-items-center">
-                                    <div class="col-6 px-3">
-                                        <a href="#role_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_role" data-tagid="<?php echo $res['id']; ?>">
-                                            <i class="fas fa-edit fa-fw text-success"></i>
-                                        </a>
+                                <?php if (can('update_roles', $_SESSION['permissions']) || can('delete_roles', $_SESSION['permission'])) { ?>
+                                    <div class="col-12 d-flex flex-row align-items-center">
+                                        <div class="col-6 px-3">
+                                            <a href="#role_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_role" data-tagid="<?php echo $res['id']; ?>">
+                                                <i class="fas fa-edit fa-fw text-success"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-6 px-3">
+                                            <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
+                                                <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
+                                                <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_role">
+                                                    <i class="fas fa-trash-alt fa-fw text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-6 px-3">
-                                        <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
-                                            <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
-                                            <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_role">
-                                                <i class="fas fa-trash-alt fa-fw text-danger"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>
