@@ -5,6 +5,7 @@
     </div>
     <h3 class="ps-2" style="color: orange; font-weight:600">Chap Co.</h3>
   </a>
+  
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
