@@ -16,22 +16,22 @@
         <?php echo ($_SESSION['address']); ?>
       </a>
 
-      <ul class="dropdown-menu position-absolute mt-2" aria-labelledby="dropdownMenuLink">
+      <ul class="dropdown-menu position-absolute mt-2 bg-orange" aria-labelledby="dropdownMenuLink">
         <li>
-          <a class="dropdown-item" href="#">
-            <i class="fa fa-cog text-muted" aria-hidden="true"></i>
+          <a class="dropdown-item text-alice" href="#">
+            <i class="fa fa-cog text-info" aria-hidden="true"></i>
             Settings
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="#">
-            <i class="fa fa-user-secret text-muted" aria-hidden="true"></i>
+          <a class="dropdown-item text-alice" href="#">
+            <i class="fa fa-user-secret text-info" aria-hidden="true"></i>
             Profile
           </a>
         </li>
         <li>
-          <a class="dropdown-item logout" href="#">
-            <i class="fas fa-sign-out-alt fa-sm fa-fw text-muted"></i>
+          <a class="dropdown-item logout text-alice" href="#">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw text-info"></i>
             Sign Out
           </a>
         </li>

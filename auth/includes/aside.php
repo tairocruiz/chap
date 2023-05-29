@@ -42,7 +42,40 @@
             <?php } ?>
 
         </ul>
-
+        <?php if($_SESSION['role'] == 'user'){ ?>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>User part</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-bs-feather="plus-circle"></span>
+            </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link menu" href="#">
+                    <span data-bs-feather="feedback"></span>
+                    <i class="fa fa-cogs me-2 text-info" aria-hidden="true"></i>
+                    Feedbacks
+                </a>
+            </li>
+        </ul>
+        <?php }?>
+        <?php if($_SESSION['role'] == 'worker'){ ?>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Ongoing Tendas</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-bs-feather="plus-circle"></span>
+            </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link menu" href="#">
+                    <span data-bs-feather="schedules"></span>
+                    <i class="fa fa-paper-plane me-2 text-info" aria-hidden="true"></i>
+                    Tenda Schedules
+                </a>
+            </li>
+        </ul>
+        <?php }?>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Saved reports</span>
             <a class="link-secondary" href="#" aria-label="Add a new report">

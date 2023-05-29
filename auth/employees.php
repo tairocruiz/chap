@@ -1,6 +1,12 @@
 <?php
 include_once '../libs/config.php';
 include_once '../libs/library.php';
+session_start();
+
+if (can('read_employees', $_SESSION['permissions'])) {
+    $permi = getPermiId('read_employees', $conn);
+    $sessid = getSessId($_SESSION['id'], $conn);
+    $actlog = "INSERT INTO `activity_log` (`log_id`, `permission_id`) VALUES('" . $sessid . "', '" . $permi . "');";
 
 $sql = "SELECT users.name, users.email, employees.id, employees.employee_no, employees.account_no, roles.name AS `level` FROM `employees`, users, roles WHERE users.role_id=roles.id AND employees.user_id=users.id;";
 $query = mysqli_query($conn, $sql);
@@ -26,7 +32,9 @@ if ($no > 0) {
                     <th scope="col">Chap Reg-NO:</th>
                     <th scope="col">Level</th>
                     <th scope="col">Account No</th>
-                    <th scope="col" style="width: 10%;">Actions</th>
+                    <?php if (can('delete_employees', $_SESSION['permissions']) || can('update_employees', $_SESSION['permissions'])) { ?>
+                        <th scope="col" style="width: 10%;">Actions</th>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +53,7 @@ if ($no > 0) {
                         <td><?php echo $res['employee_no']; ?></td>
                         <td><?php echo ucfirst($res['level']); ?></td>
                         <td><?php echo $res['account_no']; ?></td>
+                        <?php if (can('delete_employees', $_SESSION['permissions']) || can('update_employees', $_SESSION['permissions'])) { ?>
                         <td>
                             <div class="col-12 d-flex flex-row align-items-center">
                                 <div class="col-6 px-3">
@@ -62,6 +71,7 @@ if ($no > 0) {
                                 </div>
                             </div>
                         </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
 
@@ -69,8 +79,11 @@ if ($no > 0) {
         </table>
     </div>
 
-<?php
+    <?php
+        mysqli_query($conn, $actlog);
+    }
+} else {
+    include 'includes/forbidden.php';
 }
-
 
 ?>

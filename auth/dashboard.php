@@ -171,7 +171,7 @@ if ($message != '') {
 
     <!-- main page/dash -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="card col-12 mt-lg-4 mt-sm-2 border-0 bg-dark text-alice" id="wrapper">
+      <div class="card col-12 mt-lg-4 mt-sm-2 border-0 bg-dark text-alice shadow" id="wrapper">
         <div class="card-header bg-dark d-flex justify-content-around align-items-center">
           <div class="col-12">
             <h3 class="" style="font-weight: 600;">Dashboard</h3>
