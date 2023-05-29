@@ -31,7 +31,8 @@ if (isset($_POST['delete_user'])) {
 
 if (isset($_POST['add_user'])) {
     if(can('create_users', $_SESSION['permissions'])){
-        $userid = $_POST['del_id'];
+        // $userid = $_POST['del_id'];
+
         $permi = getPermiId('create_users', $conn);
         $sessid = getSessId($_SESSION['id'], $conn);
 
@@ -43,12 +44,34 @@ if (isset($_POST['add_user'])) {
         $gender = $_POST['gender'];
         $password = md5($_POST['password']);
         $role = $_POST['role'];
+        
 
         $sql = "INSERT INTO `users` (`name`, `email`, `password`, `role_id`, `gender`) VALUES('" . $username . "', '" . $email . "', '" . $password . "', '" . $role . "', '" . $gender . "');";
 
         try {
             $query = mysqli_query($conn, $sql);
             if ($query) {
+                $employeeID = mysqli_insert_id($conn);
+
+                $filter = "SELECT `name` FROM `roles` WHERE `id`='".$role."';";
+                $filtres = mysqli_query($conn, $filter);
+                $dentor = mysqli_fetch_assoc($filtres);
+                $rolename = $dentor['name'];
+
+
+                if($rolename != 'admin' && $rolename != 'user'){
+                    $employeeNo = 'CP-'.(($rolename == 'worker')? 'L2-':'L1-').$employeeID;
+                    if($rolename == 'worker' || $rolename == "Worker"){
+                        $emp = "INSERT INTO `employees`(`user_id`, `employee_no`) VALUES('".$employeeID."','".$employeeNo."');";
+                        // echo '<br>'.$emp;
+                        mysqli_query($conn, $emp);
+                    }else {
+                        $emp = "INSERT INTO `employees`(`user_id`, `employee_no`) VALUES('".$employeeID."','".$employeeNo."');";
+                        // echo '<br>'.$emp;
+                        mysqli_query($conn, $emp);
+                    }
+                }
+                
                 $message = "Record added successfuly";
                 mysqli_query($conn, $actlog);
             }
@@ -181,4 +204,48 @@ if (isset($_POST['delete_role'])) {
     } catch (\Exception $e) {
         $message = $e->getMessage();
     }
+}
+
+
+// store
+
+if (isset($_POST['add_store'])) {
+    $label = $_POST['label'];
+    $name = $_POST['name'];
+
+    $sql = "INSERT INTO `product_service` (`label`) VALUES('" . $label . "');";
+    // echo $sql;
+    $query = mysqli_query($conn, $sql);
+    $labelId = mysqli_insert_id($conn);
+
+    if ($_POST['store'] == 'product') {
+        $price = $_POST['price'];
+        $quant = $_POST['quantity'];
+
+        $sql2 = "INSERT INTO `products` (`prod_serv_id`, `name`, `price`, `quantity`) VALUES('" . $labelId . "', '" . $name . "', '" . $price . "', '" . $quant . "');";
+        echo $sql2;
+        $query = mysqli_query($conn, $sql2);
+
+        if($query) {
+            $message = "Product added succsessfully";
+        }
+
+    }else {
+        $cost = $_POST['cost'];
+        
+        $sql2 = "INSERT INTO `services` (`prod_serv_id`, `name`, `cost`) VALUES('" . $labelId . "', '" . $name . "', '" . $cost . "');";
+        // echo $sql2;
+        $query = mysqli_query($conn, $sql2);
+
+        if($query) {
+            $message = "Service added succsessfully";
+        }
+    }
+
+}
+
+
+// tendas
+if(isset($_POST['add_tenda'])){
+
 }

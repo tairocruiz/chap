@@ -9,12 +9,12 @@ $no = mysqli_num_rows($query);
 if ($no > 0) {
 
 ?>
-    <div class="card-header bg-white d-flex justify-content-around align-items-center">
+    <div class="card-header bg-orange d-flex justify-content-around align-items-center">
         <div class="col-8">
             <h3 class="" style="font-weight: 600;">services</h3>
         </div>
         <div class="col-4 d-flex justify-content-end">
-            <a class="btn btn-success modality" href="#" data-targeted="add_service">Add service</a>
+            <a class="btn btn-success modality" href="#" data-targeted="store">Add service</a>
         </div>
     </div>
     <div class="card-body">
@@ -71,7 +71,7 @@ if ($no > 0) {
             <h3 class="" style="font-weight: 600;">Services</h3>
         </div>
         <div class="col-4 d-flex justify-content-end">
-            <a class="btn btn-success modality" href="#" data-targeted="add_service">Add Service</a>
+            <a class="btn btn-success modality" href="#" data-targeted="store">Add Servicing</a>
         </div>
     </div>
     <div class="card-body">

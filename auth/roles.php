@@ -2,19 +2,19 @@
 include_once '../libs/config.php';
 include_once '../libs/library.php';
 
-$sql = "SELECT `products`.*, `product_service`.`label` FROM `products`, `product_service` WHERE `products`.`prod_serv_id`=`product_service`.`id`;";
+$sql = "SELECT roles.id, roles.name AS role, COUNT(DISTINCT role_permission.id) AS permissions, COUNT(DISTINCT users.id) AS users FROM roles LEFT JOIN role_permission ON roles.id = role_permission.role_id LEFT JOIN users ON roles.id = users.role_id GROUP BY roles.id;";
 $query = mysqli_query($conn, $sql);
 $no = mysqli_num_rows($query);
 
 if ($no > 0) {
 
 ?>
-    <div class="card-header bg-white d-flex justify-content-around align-items-center">
+    <div class="card-header bg-orange d-flex justify-content-around align-items-center">
         <div class="col-8">
-            <h3 class="" style="font-weight: 600;">Products</h3>
+            <h3 class="" style="font-weight: 600;">Roles</h3>
         </div>
         <div class="col-4 d-flex justify-content-end">
-            <a class="btn btn-success modality" href="#" data-targeted="store">Add Product</a>
+            <a class="btn btn-success modality" href="#" data-targeted="add_role">Add role</a>
         </div>
     </div>
     <div class="card-body">
@@ -22,10 +22,9 @@ if ($no > 0) {
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Label</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Permissions</th>
+                    <th scope="col">Users</th>
                     <th scope="col" style="width: 10%;">Actions</th>
                 </tr>
             </thead>
@@ -37,23 +36,22 @@ if ($no > 0) {
                     <tr>
                         <th scope="row"><?php echo $loop;
                                         $loop++; ?></th>
-                        <td><?php echo ucfirst($res['label']); ?></td>
-                        <td><?php echo $res['name']; ?></td>
-                        <td><?php echo number_format($res['price'], 2).'/='; ?></td>
-                        <td><?php echo number_format($res['quantity']); ?></td>
+                        <td><?php echo ucfirst($res['role']); ?></td>
+                        <td><?php echo $res['permissions']; ?></td>
+                        <td><?php echo ucfirst($res['users']); ?></td>
                         <td>
                             <div class="col-12 d-flex flex-row align-items-center">
                                 <div class="col-6 px-3">
-                                    <a href="#product_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_product" data-tagid="<?php echo $res['id']; ?>">
-                                        <i class="fas fa-edit fa-fw text-success"></i>
-                                    </a>
+                                    <a href="#role_edit/<?php echo $res['id']; ?>" title="Edit" class="text-white edition" data-edit="edit_role" data-tagid="<?php echo $res['id']; ?>">
+                                 <i class="fas fa-edit fa-fw text-success"></i>
+                                </a>
                                 </div>
                                 <div class="col-6 px-3">
                                     <form action="" class="w-100" method="post" onsubmit="return confirm('Are you sure wanna delete this')" id="delete-object-<?php echo $res['id']; ?>">
                                         <input type="text" name="del_id" value="<?php echo $res['id']; ?>" id="hiddenInput" hidden>
-                                        <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_product">
-                                            <i class="fas fa-trash-alt fa-fw text-danger"></i>
-                                        </button>
+                                        <button type="submit" title="Delete" class="btn text-white bg-transparent" data-oid="<?php echo $res['id']; ?>" id="delete-btn-<?php echo $res['id']; ?>" name="delete_role">
+                                        <i class="fas fa-trash-alt fa-fw text-danger"></i>
+                                    </button>
                                     </form>
                                 </div>
                             </div>

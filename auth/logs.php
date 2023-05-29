@@ -9,7 +9,7 @@ $no = mysqli_num_rows($query);
 if ($no > 0) {
 
 ?>
-    <div class="card-header bg-white d-flex justify-content-around align-items-center">
+    <div class="card-header bg-orange d-flex justify-content-around align-items-center">
         <div class="col-8">
             <h3 class="" style="font-weight: 600;">Logs</h3>
         </div>

@@ -156,7 +156,6 @@ if ($message != '') {
         console.log('I was closed by the timer')
       }
     })
-   
   </script>
 <?php
 }
@@ -182,7 +181,8 @@ if ($message != '') {
           </div>
         </div>
         <div class="card-body d-flex flex-row row">
-          <!-- <?php //var_dump($_SESSION); ?> -->
+          <!-- <?php //var_dump($_SESSION); 
+                ?> -->
           <?php
           foreach ($column as $field) {
           ?>
@@ -237,7 +237,7 @@ if ($message != '') {
         url: ado + ".php",
         data: ado,
         success: function(response) {
-          // console.log(response)
+          console.log(this)
           $('#wrapper').html(response);
         }
       });
@@ -299,23 +299,25 @@ if ($message != '') {
             type: 'POST',
             url: 'dashboard.php',
             data: {
-                    del_id: y
-                },
-                success: function(response) {
-                    console.log(this);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
+              del_id: y
+            },
+            success: function(response) {
+              console.log(this);
+            },
+            error: function(xhr, status, error) {
+              console.error(error);
+            }
 
           });
-        
+
         } else {
           return false;
         }
       })
     });
 
+
+   
   });
 </script>
 <?php require_once('../includes/footer.php'); ?>

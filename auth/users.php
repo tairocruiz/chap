@@ -19,9 +19,11 @@ if (can('read_users', $_SESSION['permissions'])) {
             <div class="col-8">
                 <h3 class="" style="font-weight: 600;">Users</h3>
             </div>
-            <div class="col-4 d-flex justify-content-end">
-                <a class="btn btn-success modality" href="#" data-targeted="add_user">Add user</a>
-            </div>
+            <?php if(can('create_users', $_SESSION['permissions'])){ ?>
+                <div class="col-4 d-flex justify-content-end">
+                    <a class="btn btn-success modality" href="#" data-targeted="add_user">Add user</a>
+                </div>
+            <?php } ?>
         </div>
         <div class="card-body">
             <table class="table">

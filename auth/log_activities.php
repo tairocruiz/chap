@@ -6,7 +6,7 @@ if(isset($_GET['data'])){
 
 $uid = $_GET['data'];
 
-$sql = "SELECT users.name AS session_owner, activity_log.id as aid, logs.session, permissions.permission AS activity, DATE_FORMAT(activity_log.stamp, '%W %b ''%y %H:%i') AS stamp FROM logs, users, activity_log, permissions WHERE logs.id = activity_log.log_id AND logs.user_id=users.id AND logs.id='$uid' AND activity_log.permission_id=permissions.id;";
+$sql = "SELECT users.name AS session_owner, activity_log.id as aid, logs.session, permissions.permission AS activity, DATE_FORMAT(activity_log.stamp, '%W %D %b ''%y %H:%i') AS stamp FROM logs, users, activity_log, permissions WHERE logs.id = activity_log.log_id AND logs.user_id=users.id AND logs.id='$uid' AND activity_log.permission_id=permissions.id;";
 $query = mysqli_query($conn, $sql);
 $no = mysqli_num_rows($query);
 

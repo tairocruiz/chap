@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!empty($_SESSION)){
-    if ($_SESSION['role'] == 'admin') {
+    if ($_SESSION['role'] !== null) {
         header('location:dashboard.php');
     }else {
         header('location:../403.php');

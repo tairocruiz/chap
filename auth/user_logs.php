@@ -6,7 +6,7 @@ if(isset($_GET['data'])){
 
 $uid = $_GET['data'];
 
-$sql = "SELECT logs.id, logs.session, COUNT(activity_log.log_id) AS activities, DATE_FORMAT(logs.login, '%W %b ''%y %H:%i') AS login, DATE_FORMAT(logs.logout, '%W %b ''%y %H:%i') AS logout FROM logs INNER JOIN activity_log ON logs.id = activity_log.log_id WHERE logs.user_id='$uid' GROUP BY logs.id;";
+$sql = "SELECT logs.id, logs.session, COUNT(activity_log.log_id) AS activities, DATE_FORMAT(logs.login, '%W %D %b ''%y %H:%i') AS login, DATE_FORMAT(logs.logout, '%W %D %b ''%y %H:%i') AS logout FROM logs INNER JOIN activity_log ON logs.id = activity_log.log_id WHERE logs.user_id='$uid' GROUP BY logs.id;";
 $query = mysqli_query($conn, $sql);
 $no = mysqli_num_rows($query);
 
@@ -17,7 +17,7 @@ $user = mysqli_fetch_assoc($qr);
 if ($no > 0) {
 
 ?>
-    <div class="card-header bg-white d-flex justify-content-around align-items-center">
+    <div class="card-header bg-orange d-flex justify-content-around align-items-center">
         <div class="col-8">
             <h3 class="" style="font-weight: 600;"><?php echo ucfirst($user['name']).'\'s '; ?>Logs</h3>
         </div>

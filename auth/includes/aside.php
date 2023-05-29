@@ -8,26 +8,35 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.php">
-                    
+
                     Dashboard
                 </a>
             </li>
             <?php foreach ($column as $key) { ?>
+                <?php
+                foreach ($_SESSION['permissions'] as $permission => $true) {
+                    $opera = explode('_', $permission);
+                    if ($opera[0] == 'read') {
+                        $resource = $opera[1];
+                        if ($key->name == $resource) {
+                ?>
+                            <li class="nav-item">
+                                <a class="nav-link menu" href="#">
+                                    <span data-bs-feather="<?php echo $resource; ?>"></span>
+                                    <?php echo ucfirst(str_replace('_', ' ', $resource)); ?>
+                                </a>
+                            </li>
+
+                <?php } } } ?>
+            <?php } ?>
+            <?php if (can('read_logs', $_SESSION['permissions'])) { ?>
                 <li class="nav-item">
-                    <a class="nav-link menu" href="#">
-                        <span data-bs-feather="<?php echo $key->name; ?>"></span>
-                        <?php echo ucfirst(str_replace('_', ' ', $key->name)); ?>
+                    <a class="nav-link menu" aria-current="page" href="#">
+                        <span data-bs-feather="logs"></span>
+                        <i class="fas fa-notes-medical fa-fw"></i>
+                        Logs
                     </a>
                 </li>
-            <?php } ?>
-            <?php if(can('read_logs', $_SESSION['permissions'])){ ?>
-            <li class="nav-item">
-                <a class="nav-link menu" aria-current="page" href="#">
-                <span data-bs-feather="logs"></span>
-                    <i class="fas fa-notes-medical fa-fw"></i>
-                    Logs
-                </a>
-            </li>
             <?php } ?>
 
         </ul>

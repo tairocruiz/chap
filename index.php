@@ -34,8 +34,8 @@ if (isset($_POST['submit'])) {
             }
         }
 
-        if ($run && ($_SESSION['role'] == 'admin')) {
-            header('location:admin/index.php');
+        if ($run && ($_SESSION['role'] !== null)) {
+            header('location:auth/index.php');
         } else if ($run && ($_SESSION['rolename'] == 'user' || $_SESSION['rolename'] == 'users')) {
             header('location:users/index.php');
         } else {
