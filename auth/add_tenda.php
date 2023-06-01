@@ -10,6 +10,8 @@ $sql2 = "SELECT `product_service`.* FROM `product_service`, `services` WHERE `pr
 $query2 = mysqli_query($conn, $sql2);
 $no2 = mysqli_num_rows($query2);
 
+$sql3 = "SELECT * FROM employees ";
+
 if (isset($_GET['add_tenda'])) {
 ?>
 

@@ -3,6 +3,12 @@ require 'libs/library.php';
 require 'libs/config.php';
 // var_dump($_SERVER);
 session_start();
+
+if(isset($_SESSION['key']) && $_SESSION['address'] != null){
+ header('location:auth/index.php');
+}
+
+// auth_check();
 if (isset($_POST['submit'])) {
     $name = $_POST['email'];
     $pass = md5($_POST['password']);
@@ -11,6 +17,8 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($query);
     if (is_array($res)) {
+
+        
 
         $_SESSION['key'] = $res['key'];
         $_SESSION['username'] = $res['uname'];
