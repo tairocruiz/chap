@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
     if (is_array($res)) {
 
         
-
         $_SESSION['key'] = $res['key'];
         $_SESSION['username'] = $res['uname'];
         $_SESSION['address'] = $res['email'];
