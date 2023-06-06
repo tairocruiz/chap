@@ -560,7 +560,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumjping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `gender`, `photo`) VALUES
